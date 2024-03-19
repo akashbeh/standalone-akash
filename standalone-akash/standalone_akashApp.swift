@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct standalone_akashApp: App {
+struct Assignment_0221App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .background(Color.black.edgesIgnoringSafeArea(.all))
         }
     }
 }

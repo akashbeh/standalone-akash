@@ -1,0 +1,165 @@
+{
+    "ip": "192.95.58.243",
+    "port": 25566,
+    "debug": {
+        "ping": true,
+        "query": true,
+        "srv": true,
+        "querymismatch": false,
+        "ipinsrv": false,
+        "cnameinsrv": false,
+        "animatedmotd": false,
+        "cachehit": false,
+        "cachetime": 1710815112,
+        "cacheexpire": 1710815172,
+        "apiversion": 3,
+        "dns": {
+            "srv": [
+                {
+                    "name": "_minecraft._tcp.cities.arim.space",
+                    "type": "SRV",
+                    "class": "IN",
+                    "ttl": 300,
+                    "rdlength": 0,
+                    "rdata": "",
+                    "priority": 0,
+                    "weight": 50,
+                    "port": 25566,
+                    "target": "playdirect.arim.space"
+                },
+                {
+                    "name": "_minecraft._tcp.cities.arim.space",
+                    "type": "RRSIG",
+                    "class": "IN",
+                    "ttl": 300,
+                    "rdlength": 0,
+                    "rdata": "",
+                    "typecovered": "SRV",
+                    "algorithm": 13,
+                    "labels": 5,
+                    "origttl": 300,
+                    "sigexp": "20240320032512",
+                    "sigincep": "20240318012512",
+                    "keytag": 34505,
+                    "signname": "arim.space",
+                    "signature": "OMaVPXL7zL2pyEqJLU+mxeaD/NTziePTM8Bv2sZQqMBd6UOfkwzjkyKl+xXOcjYL8FOypwcvyHeCrvjOjuYUqQ=="
+                }
+            ],
+            "srv_a": [
+                {
+                    "name": "playdirect.arim.space",
+                    "type": "A",
+                    "class": "IN",
+                    "ttl": 300,
+                    "rdlength": 0,
+                    "rdata": "",
+                    "address": "192.95.58.243"
+                },
+                {
+                    "name": "playdirect.arim.space",
+                    "type": "RRSIG",
+                    "class": "IN",
+                    "ttl": 300,
+                    "rdlength": 0,
+                    "rdata": "",
+                    "typecovered": "A",
+                    "algorithm": 13,
+                    "labels": 3,
+                    "origttl": 300,
+                    "sigexp": "20240320032512",
+                    "sigincep": "20240318012512",
+                    "keytag": 34505,
+                    "signname": "arim.space",
+                    "signature": "BtDvL4GkPYSWuRQwfzx1uaVOsvxJOLPOEn8c8T9xPhvXYLmIYFqZC9s4PtFn8dpO75B6bl7UjP7RDrJ6QkU2mg=="
+                }
+            ]
+        }
+    },
+    "motd": {
+        "raw": [
+            "Â§r§bÂ§r§lWelcome to Â§r§3Â§r§lCitie SworldÂ§r§bÂ§r§l!§r"
+        ],
+        "clean": [
+            "ÂÂWelcome to ÂÂCitie SworldÂÂ!"
+        ],
+        "html": [
+            "Â<span style=\"color: #55FFFF\">Â</span><span style=\"font-weight: bold;\">Welcome to Â</span><span style=\"color: #00AAAA\">Â</span><span style=\"font-weight: bold;\">Citie SworldÂ</span><span style=\"color: #55FFFF\">Â</span><span style=\"font-weight: bold;\">!</span>"
+        ]
+    },
+    "players": {
+        "online": 0,
+        "max": 6
+    },
+    "version": "1.18.1",
+    "online": true,
+    "protocol": {
+        "version": 757,
+        "name": "1.18.1"
+    },
+    "hostname": "playdirect.arim.space",
+    "software": "Paper on 1.18.1-R0.1-SNAPSHOT",
+    "map": {
+        "raw": "CitiesTransfer",
+        "clean": "CitiesTransfer",
+        "html": "CitiesTransfer"
+    },
+    "plugins": [
+        {
+            "name": "AlamgirPlugin",
+            "version": "0.1.0"
+        },
+        {
+            "name": "BlankCommand",
+            "version": "0.1.0"
+        },
+        {
+            "name": "dynmap",
+            "version": "3.5-873"
+        },
+        {
+            "name": "ImageOnMap",
+            "version": "4.2.2"
+        },
+        {
+            "name": "PermissionsEx",
+            "version": "1.23.4"
+        },
+        {
+            "name": "PlugManX",
+            "version": "2.2.9"
+        },
+        {
+            "name": "ProtocolLib",
+            "version": "4.8.0-SNAPSHOT-b540"
+        },
+        {
+            "name": "SafeTrade",
+            "version": "1.0.16"
+        },
+        {
+            "name": "SaneEconomy",
+            "version": "0.13.1-SNAPSHOT"
+        },
+        {
+            "name": "SkullExploitPatch",
+            "version": "0.0.6"
+        },
+        {
+            "name": "Vault",
+            "version": "1.5.6-b49"
+        },
+        {
+            "name": "ViaBackwards",
+            "version": "4.1.1"
+        },
+        {
+            "name": "ViaVersion",
+            "version": "4.9.2"
+        },
+        {
+            "name": "WorldEdit",
+            "version": "7.2.9+e20e013"
+        }
+    ],
+    "eula_blocked": false
+}
