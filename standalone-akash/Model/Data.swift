@@ -7,9 +7,26 @@
 
 import Foundation
 
-public class ServerData {
-    var servers: [Server] = load("servers.json")
+//public class ServerData {
+//    var servers: [Server] = getServer(address: "arim.json", java: true)
     
+//}
+
+func getServers(addr: String, jav: Bool) async throws -> [Server] {
+    
+    let url = NSURL.fileURL(withPath: "\(DIRECTORY)\(addr)") // For testing on computer 1
+    print(url)
+    
+    let data = (try await URLSession.shared.data(from: url)).0 // CHANGE
+    print(data)
+    
+// "~/Documents/asb/mob_app_2/Assignment_0221/output.json"
+    if let decodedServers = try? JSONDecoder().decode([Server].self, from: data) {
+        return decodedServers
+    } else {
+        print("Decoding error")
+        throw APIError.decodingError
+    }
 }
 
 

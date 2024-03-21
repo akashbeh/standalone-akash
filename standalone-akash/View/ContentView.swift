@@ -8,19 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    let serverData: ServerData
+    @State var serverData: [Server]?
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(serverData) { server in
-                    Text("\(server.name)")
+            if let servers = serverData {
+                List {
+                    ForEach(servers, id: \.self) { server in
+                        Text("\(server.hostname)")
+                    }
                 }
+                .navigationTitle("Menu")
+                .listStyle(GroupedListStyle())
             }
-            .navigationTitle("Menu")
-            .listStyle(GroupedListStyle())
+        }.task {
+            do {
+                serverData = try await getServers(addr: "arim.json", jav: true)
+            } catch {
+                print("Error")
+            }
         }
     }
+    
+    
 }
 
 
