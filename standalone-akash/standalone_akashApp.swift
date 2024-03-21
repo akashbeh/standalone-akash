@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct Assignment_0221App: App {
+    @State var serverData = ServerData()
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .background(Color.black.edgesIgnoringSafeArea(.all))
+//            SearchView()
+//                .background(Color.black.edgesIgnoringSafeArea(.all))
+            ContentView(serverData)
         }
     }
 }

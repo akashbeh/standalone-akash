@@ -17,7 +17,7 @@ enum APIError: Error {
 
 func getServer(address: String, java: Bool) async throws -> Server {
     
-    let url = NSURL.fileURL(withPath: "\(DIRECTORY)arim.json") // For testing on computer 1
+    let url = NSURL.fileURL(withPath: "\(DIRECTORY)\(address)") // For testing on computer 1
     print(url)
     
     let data = (try await URLSession.shared.data(from: url)).0 // CHANGE
