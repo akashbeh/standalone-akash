@@ -1,8 +1,8 @@
 //
-//  IconView.swift
-//  standalone-akash
+//  ServerView.swift
+//  Assignment_0221
 //
-//  Created by keckuser on 3/18/24.
+//  Created by keckuser on 2/20/24.
 //
 
 import SwiftUI
@@ -51,7 +51,7 @@ struct IconView: View {
                 iconSuccess = try await getIcon()
                 loading = false
             } catch {
-                print(error)
+                print("No icon: \(error)")
                 loading = false
                 iconSuccess = nil
             }

@@ -1,8 +1,4 @@
 //
-//  ContentView.swift
-//  Assignment_0221
-//
-//  Created by keckuser on 2/19/24.
 //
 
 import SwiftUI
@@ -12,8 +8,21 @@ struct SearchView: View {
     @State var java_button = true
     @State var address = ""
     @State var server: Server?
-    @State var errorReason: Error?
+    @State var errorReason: APIError?
     @State var java = true
+    
+    func printError(apiError: APIError) -> String {
+        switch apiError {
+        case APIError.notURL:
+            return "Invalid URL"
+        case APIError.notFound:
+            return "Server not found"
+        case APIError.decodingError:
+            return "Invalid server data"
+        case APIError.unexpectedError:
+            return "Oops! Error"
+        }
+    }
     
     var body: some View {
         ScrollView {
@@ -48,20 +57,16 @@ struct SearchView: View {
                 Text("Server Info")
                     .font(.title)
                     .padding()
-                
-                if let loadedServer = server {
-                    ServerView(server: loadedServer, java: java)
+                if loading {
+                    ProgressView()
                 } else {
-                    if let someError = errorReason {
-                        switch someError {
-                        case APIError.notFound:
-                            Text("Server not found")
-                        case APIError.decodingError:
-                            Text("Invalid server data")
-                        case APIError.unexpectedError:
-                            Text("Oops! Error")
-                        default:
-                            ProgressView()
+                    if let loadedServer = server {
+                        ServerView(server: loadedServer, java: java)
+                        ServerView2(server: loadedServer, java: java)
+                        ServerView3(server: loadedServer, java: java)
+                    } else {
+                        if let someError = errorReason {
+                            Text(printError(apiError: someError))
                         }
                     }
                 }
@@ -85,7 +90,7 @@ struct SearchView: View {
             server = loadedServer
         } catch {
             server = nil
-            errorReason = error
+            errorReason = (error as? APIError) ?? APIError.unexpectedError
         }
         loading = false
         return

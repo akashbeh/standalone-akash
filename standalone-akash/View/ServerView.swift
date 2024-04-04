@@ -1,12 +1,12 @@
 //
 //  ServerView.swift
-//  standalone-akash
+//  Assignment_0221
 //
-//  Created by keckuser on 3/18/24.
+//  Created by keckuser on 2/21/24.
 //
 
 import SwiftUI
-import WebKit
+
 struct ServerView: View {
     let server: Server
     let java: Bool
@@ -15,58 +15,27 @@ struct ServerView: View {
     @State var showMods = false
     
     var body: some View {
+        IconView(server: server)
         
-        Server1(server: server) // Response to: "The compiler is unable to type-check this expression in reasonable time"
-        
-        if let players = server.players, let playerList = players.list {
-            Toggle("Show players",isOn: $showPlayers)
-            
-            if showPlayers {
-                ListView(iterList: ItemList.play(playerList))
+        if let motd = server.motd {
+            ForEach(motd.clean, id: \.self) { line in
+                Text(line)
             }
         }
-        
-        
-        // CUT AND PASTE BELOW
-        if !java {
-            if let gamemode = server.gamemode {
-                ServerRow(title: "Gamemode", value: gamemode)
-            }
-        }
-        
-        if let software = server.software {
-            ServerRow(title: "Software", value: software)
-        }
-        
-        if let plugins = server.plugins {
-            Toggle("Show plugins",isOn: $showPlugins)
-            
-            if showPlugins {
-                ListView(iterList: ItemList.plug(plugins))
-            }
-        }
-        
         Spacer()
-        
-        if let mods = server.mods {
-            Toggle("Show mods",isOn: $showMods)
-            
-            if showMods {
-                ListView(iterList: ItemList.m(mods))
+        if let info = server.info {
+            Text("Server info")
+                .fontWeight(.bold)
+            ForEach(info.clean, id: \.self) { line in
+                Text(line)
             }
         }
         
-        if java {
-            if let eulaBlocked = server.eula_blocked {
-                ServerRow(title: "EULA Blocked", value: eulaBlocked ? "Yes" : "No")
-            }
-            
-        } else {
-            if let serverid = server.serverid {
-                ServerRow(title: "Server ID", value: serverid)
-            }
-        }
+        ServerRow(title: "Online", value: server.online ? "Yes" : "No")
         
-        Spacer()
+        ServerRow(title: "IP", value: server.ip)
+        ServerRow(title: "Port", value: "\(server.port)")
+        ServerRow(title: "Hostname", value: server.hostname)
+        
     }
 }

@@ -1,10 +1,10 @@
 //
-//  Server.swift
-//  standalone-akash
+//  Player.swift
+//  Assignment_0221
 //
-//  Created by keckuser on 3/18/24.
+//  Created by keckuser on 2/19/24.
 //
-
+//
 import Foundation
 // import Network - use for IPAddress if you want
 
@@ -61,4 +61,6 @@ struct Server: Codable, Hashable {
         var clean: [String]
         var html: [String]
     }
+    
+    var info: Info?
 }
