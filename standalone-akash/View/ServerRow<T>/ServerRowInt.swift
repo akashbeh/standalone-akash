@@ -15,10 +15,6 @@ struct ServerRowInt: View {
     
     @State var editing = false
     
-//    init() {
-//        value = bind ?? ""
-//    }
-    
     var body: some View {
          HStack {
              Text(title)

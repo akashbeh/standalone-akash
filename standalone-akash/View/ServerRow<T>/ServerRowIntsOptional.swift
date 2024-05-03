@@ -17,11 +17,6 @@ struct ServerRowIntsOptional: View {
     @State var text1 = ""
     @State var text2 = ""
     
-//    init() {
-//        text1 = String(int1)
-//        text2 = String(int2)
-//    }
-    
     var body: some View {
          HStack {
              Text(title)
@@ -57,12 +52,6 @@ struct ServerRowIntsOptional: View {
                  if let int2Exists = int2 {
                      text2 = String(int2Exists)
                  }
-//                 if let int1Exists = int1, let str1 = String(int1Exists) {
-//                     text1 = str1
-//                 }
-//                 if let int2Exists = int2, let str2 = String(int2Exists) {
-//                     text2 = str2
-//                 }
              }
          }
          .padding()

@@ -29,43 +29,7 @@ struct ServerViewMainInfo: View {
                 .task {
                     name = server.name ?? ""
                 }
-//            if let serverName = server.name {
-//                if editingName {
-//                    TextField("",text: $name)
-//                        .onSubmit {
-//                            server.name = name
-//                        }
-//                } else {
-//                    Text(serverName)
-//                        .font(Font.custom("SpecialElite-Regular", size: 50))
-//                        .font(.largeTitle)
-//                        .offset(y: -100)
-//                        .foregroundColor(Color(red: 55/255, green: 26/255, blue: 77/255))
-//                }
-//                Spacer().task {
-//                    name = serverName
-//                }
-//
-//                Button(action: {
-//                    editingName.toggle()
-//                }) {
-//                    if editingName {
-//                        Text("Done✔️")
-//                    } else {
-//                        Text("Edit📝")
-//                    }
-//                }
-//            } else {
-//                Button(action: {
-//                    editingName.toggle()
-//                }) {
-//                    if editingName {
-//                        Text("Done✔️")
-//                    } else {
-//                        Text("Name server...")
-//                    }
-//                }
-//            }
+
             IconView(server: server)
             
             if let motd = server.motd {

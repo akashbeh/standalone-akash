@@ -33,9 +33,6 @@ struct Assignment_0221App: App {
             } else {
                 Text("Failed to find json")
             }
-            
-//            SearchView()
-//                .background(Color.black.edgesIgnoringSafeArea(.all))
         }
     }
 }

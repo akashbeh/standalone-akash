@@ -84,7 +84,6 @@ struct ServerViewSoftware: View {
             Text("")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(Color.green.opacity(0.3))
     }
 }
 

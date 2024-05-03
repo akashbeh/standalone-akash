@@ -20,18 +20,8 @@ struct ContentView: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-//            FavoritesView()
-//                .tabItem {
-//                    Label("Favorites", systemImage: "star.fill")
-//                }
         }
         .padding()
-//        .background(
-//            RoundedRectangle(cornerRadius: 20)
-//                .fill(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
-//                .shadow(radius: 0.25)
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        )
     }
 }
 
