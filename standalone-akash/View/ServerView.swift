@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ServerView: View {
-    let server: Server
-    let java: Bool
+    @Binding var server: Server
     @State var showPlayers = false
     @State var showPlugins = false
     @State var showMods = false
@@ -31,11 +30,11 @@ struct ServerView: View {
             }
         }
         
-        ServerRow(title: "Online", value: server.online ? "Yes" : "No")
+        ServerRowBoolean(title: "Online", bind: $server.online)
         
-        ServerRow(title: "IP", value: server.ip)
-        ServerRow(title: "Port", value: "\(server.port)")
-        ServerRow(title: "Hostname", value: server.hostname)
+        ServerRowString(title: "IP", bind: $server.ip)
+        ServerRowInt(title: "Port", bind: $server.port)
+        ServerRowString(title: "Hostname", bind: $server.hostname)
         
     }
 }

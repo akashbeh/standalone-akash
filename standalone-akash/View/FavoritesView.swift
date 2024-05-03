@@ -1,9 +1,13 @@
 //
+//  FavoritesView.swift
+//  standalone-akash
+//
+//  Created by keckuser on 5/3/24.
 //
 
 import SwiftUI
 
-struct SearchView: View {
+struct FavoritesView: View {
     @EnvironmentObject var serverData: ServerData
 
     @State var text = ""

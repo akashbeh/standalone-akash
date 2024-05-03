@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct ServerView2: View {
-    let server: Server
-    let java: Bool
+    @Binding var server: Server // let
     @State var showPlayers = false
     @State var showPlugins = false
     @State var showMods = false
     
+    @State var serverPlayers = Server.Players(online: nil, max: nil, list: nil)
+    @State var serverMap = Server.Map(raw: "", clean: "", html: "")
+    
     var body: some View {
         if let players = server.players, let onlinePlayers = players.online , let maxPlayers = players.max {
-            ServerRow(title: "Online Players", value: "\(onlinePlayers) / \(maxPlayers)")
+            ServerRowIntsOptional(title: "Online Players", int1: $serverPlayers.online, int2: $serverPlayers.max)
+                .task {
+                    serverPlayers = players
+                }
         }
         
         if let version = server.version {
-            ServerRow(title: "Version", value: version)
+            ServerRowStringOptional(title: "Version", bind: $server.version, value: version)
         }
         
         if let players = server.players, let playerList = players.list {
@@ -44,7 +49,10 @@ struct ServerView2: View {
         }
         
         if let map = server.map {
-            ServerRow(title: "Map", value: map.clean)
+            ServerRowString(title: "Map", bind: $serverMap.clean)
+                .task {
+                    serverMap = map
+                }
         }
     }
 }

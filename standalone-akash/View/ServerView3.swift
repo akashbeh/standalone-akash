@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct ServerView3: View {
-    let server: Server
-    let java: Bool
+    @Binding var server: Server
     @State var showPlayers = false
     @State var showPlugins = false
     @State var showMods = false
     
     var body: some View {
-        if !java {
+        if !server.java() {
             if let gamemode = server.gamemode {
-                ServerRow(title: "Gamemode", value: gamemode)
+                ServerRowStringOptional(title: "Gamemode", bind: $server.gamemode, value: gamemode)
             }
         }
         
         if let software = server.software {
-            ServerRow(title: "Software", value: software)
+            ServerRowStringOptional(title: "Software", bind: $server.software, value: software)
         }
         
         if let plugins = server.plugins {
-            Toggle("Show plugins",isOn: $showPlugins)
+            VStack {
+                Toggle("Show plugins",isOn: $showPlugins)
+                    
             
-            if showPlugins {
-                VStack {
+                if showPlugins {
                     HStack {
                         Text("Name")
                             .fontWeight(.bold)
@@ -42,41 +42,45 @@ struct ServerView3: View {
                     }
                 }
             }
+            .padding()
         }
         
         Spacer()
         
         if let mods = server.mods {
-            Toggle("Show mods",isOn: $showMods)
             
-            if showMods {
-                VStack {
+            VStack {
+                Toggle("Show mods",isOn: $showMods)
                     
-                        HStack {
-                            Text("Name")
-                                .fontWeight(.bold)
-                            Spacer()
-                            Text("Version")
-                                .fontWeight(.bold)
-                        }.padding(.horizontal,10)
+                if showMods {
+                    HStack {
+                        Text("Name")
+                            .fontWeight(.bold)
+                        Spacer()
+                        Text("Version")
+                            .fontWeight(.bold)
+                    }.padding(.horizontal,10)
                     ForEach(mods, id: \.self) { mod in
                             SmallRow(title: mod.name, value: mod.version)
                     }
                 }
             }
+            .padding()
         }
         
-        if java {
+        if server.java() {
             if let eulaBlocked = server.eula_blocked {
-                ServerRow(title: "EULA Blocked", value: eulaBlocked ? "Yes" : "No")
+                ServerRowBooleanOptional(title: "EULA Blocked", bind: $server.eula_blocked, value: eulaBlocked)
             }
             
         } else {
             if let serverid = server.serverid {
-                ServerRow(title: "Server ID", value: serverid)
+                ServerRowStringOptional(title: "Server ID", bind: $server.serverid, value: serverid)
             }
         }
         
         Spacer()
+        Spacer()
+        Text("")
     }
 }

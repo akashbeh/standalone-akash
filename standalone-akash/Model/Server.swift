@@ -9,6 +9,8 @@ import Foundation
 // import Network - use for IPAddress if you want
 
 struct Server: Codable, Hashable {
+    var name: String?
+    
     var online: Bool
     var ip: String
     var port: Int
@@ -63,4 +65,20 @@ struct Server: Codable, Hashable {
     }
     
     var info: Info?
+    
+    
+    func java() -> Bool {
+        if eula_blocked != nil {
+            return true
+        }
+        return false
+    }
+
+    func getName() -> String {
+        if let nameExists = name {
+            return nameExists
+        } else {
+            return hostname
+        }
+    }
 }
