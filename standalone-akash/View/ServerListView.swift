@@ -27,8 +27,11 @@ struct ServerListView: View {
                 }
                 .navigationTitle("Servers")
                 .listStyle(GroupedListStyle())
+                .cornerRadius(10)
             }
         }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         
         
     }

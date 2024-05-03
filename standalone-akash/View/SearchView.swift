@@ -5,15 +5,43 @@ import SwiftUI
 
 struct SearchView: View {
     @EnvironmentObject var serverData: ServerData
-
+    
     @State var text = ""
     @State var serverIndices = [Int]()
     @State var loading = false
-
+    
+    @State var noSearches = true
+    
+    func findServers(input: String) {
+        noSearches = false
+        
+        loading = true
+        serverIndices = [Int]()
+        var index = 0
+        let inputLower = input.lowercased()
+        for serverInData in serverData.servers {
+            if serverInData.hostname.lowercased().contains(inputLower) || serverInData.ip.lowercased().contains(input) {
+                serverIndices.append(index)
+                continue
+            }
+            if let serverName = serverInData.name {
+                if serverName.lowercased().contains(inputLower) {
+                    serverIndices.append(index)
+                    continue
+                }
+            }
+            index += 1
+        }
+        loading = false
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
+                Text("Search servers")
+                    .font(.title)
+                    .padding()
+                
                 TextField(
                     "Enter an IP address...",
                     text: $text
@@ -26,68 +54,52 @@ struct SearchView: View {
                 .onSubmit{
                     findServers(input: text)
                 }
-
-
-                Text("Server Info")
-                    .font(.title)
-                    .padding()
+                
+                
                 if loading {
                     ProgressView()
                 } else {
                     if let serverIndicesExist = serverIndices {
-                        List {
-                            ForEach(0...(serverIndicesExist.count-1), id: \.self) { number in
-                                //                        Text(server.hostname)
-                                NavigationLink(
-                                    serverData.servers[number].getName()
-                                ) {
-                                    CombinedServerView(server: $serverData.servers[number])
+                        if serverIndicesExist.count > 0 {
+                            List {
+                                ForEach(serverIndicesExist, id: \.self) { number in
+                                    //                        Text(server.hostname)
+                                    NavigationLink(
+                                        serverData.servers[number].getName()
+                                    ) {
+                                        CombinedServerView(server: $serverData.servers[number])
+                                    }
                                 }
                             }
+                            .listStyle(GroupedListStyle())
+                            .cornerRadius(10)
+                        } else {
+                            if !noSearches {
+                                Text("No servers found")
+                            }
                         }
-                        .navigationTitle("Servers")
-                        .listStyle(GroupedListStyle())
                     } else {
                         if let someError = serverData.error {
                             Text(someError.printError())
                         } else {
-                            Button(action: findServers(input: text)) {
+                            Button(action: {
+                                findServers(input: text)
+                            }) {
                                 Text("Load search")
                             }
                         }
                     }
                 }
             }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .shadow(radius: 0.25)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                )
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .padding()
-        .foregroundColor(.white)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                .shadow(radius: 0.25)
-        )
     }
-
-
-
-    func findServers(input: String) {
-//        loading = true
-//        do {
-        loading = true
-        serverIndices = [Int]()
-        let index = 0
-            for serverInData in serverData.servers {
-                if serverInData.hostname == address {
-                    serverIndices.append(serverInData)
-                }
-                index += 1
-            }
-        loading = false
-//        } catch {
-//            server = nil
-//            errorHandler.error = (error as? AppError) ?? AppError.unexpectedError
-//        }
-//        loading = false
-    }
-
+    
 }

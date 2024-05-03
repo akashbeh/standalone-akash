@@ -12,9 +12,25 @@ struct CombinedServerView: View {
     
     var body: some View {
         ScrollView {
-            ServerView(server: $server)
-            ServerView2(server: $server)
-            ServerView3(server: $server)
+            Spacer()
+            ServerViewMainInfo(server: $server)
+            ServerViewPlayers(server: $server)
+            ServerViewSoftware(server: $server)
         }
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .shadow(radius: 0.25)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            )
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
+
+// Failed because previews do not accept binding
+//struct MyPreviewProvider_Previews: PreviewProvider {
+//    @State var server = Server(name: "Test", online: true, ip: "192", port: 89, hostname: "Test")
+//    static var previews: some View {
+//        CombinedServerView(server: $server)
+//    }
+//}

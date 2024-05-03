@@ -43,25 +43,6 @@ class ServerData: ObservableObject {
         }
     }
     
-//    func getServer(address: String) async throws -> Server {
-//        if let directoryExists = directory {
-//            guard let url = URL(string: "\(directoryExists)\(address)") else {
-//                throw AppError.notURL
-//            }
-//            print(url)
-//
-//            guard let data = try? await URLSession.shared.data(from: url) else { throw AppError.notFound }
-//            // print(data)
-//
-//            if let decodedServer = try? JSONDecoder().decode(Server.self, from: data.0) {
-//                return decodedServer
-//            } else {
-//                throw AppError.decodingError
-//            }
-//        } else {
-//            throw AppError.noDirectoryError
-//        }
-//    }
 }
 
 
